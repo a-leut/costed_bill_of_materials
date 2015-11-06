@@ -7,7 +7,7 @@
 
 from flask import render_template, Blueprint, url_for, \
     redirect, flash, request
-from flask.ext.login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required
 
 from project import bcrypt, db
 from project.models import User
@@ -52,7 +52,7 @@ def login():
                 user.password, request.form['password']):
             login_user(user)
             flash('You are logged in. Welcome!', 'success')
-            return redirect(url_for('main.home'))
+            return redirect(url_for('cbom.home'))
         else:
             flash('Invalid email and/or password.', 'danger')
             return render_template('user/login.html', form=form)
@@ -64,4 +64,4 @@ def login():
 def logout():
     logout_user()
     flash('You were logged out. Bye!', 'success')
-    return redirect(url_for('main.home'))
+    return redirect(url_for('cbom.home'))
