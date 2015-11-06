@@ -9,6 +9,7 @@ from flask import render_template, Blueprint
 from flask_login import login_required
 from flask import flash
 from .forms import CbomSearchForm
+from project.models import Cbom
 
 
 ################
@@ -37,6 +38,9 @@ def cbom():
 def search_cbom():
     form = CbomSearchForm()
     if form.validate_on_submit():
-        flash('we searched')
+        result = Cbom.query.filter(
+            Cbom.name.like('%' + form.filename.data + '%')
+        ).all()
+        print(len(result))
     return render_template("cbom/search_cbom.html", form=form)
 
