@@ -5,10 +5,12 @@
 #### imports ####
 #################
 
+from werkzeug import secure_filename
 from flask import render_template, Blueprint
 from flask_login import login_required
 from flask import flash
 from .forms import CbomSearchForm
+
 
 
 ################
@@ -21,7 +23,15 @@ main_blueprint = Blueprint('cbom', __name__,)
 ################
 #### routes ####
 ################
-
+@main_blueprint.route('/upload/', methods=('GET', 'POST'))
+def upload():
+    # form =
+    # if form.validate_on_submit():
+    #     filename =
+    #     form.photo.data.save('uploads/' + filename)
+    # else:
+    #     filename = None
+    return render_template('cbom/upload.html', form=None, filename=None)
 
 @main_blueprint.route('/')
 def home():

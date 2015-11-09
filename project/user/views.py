@@ -38,7 +38,7 @@ def register():
         login_user(user)
 
         flash('Thank you for registering.', 'success')
-        return redirect(url_for("user.members"))
+        return redirect(url_for("cbom.home"))
 
     return render_template('user/register.html', form=form)
 
