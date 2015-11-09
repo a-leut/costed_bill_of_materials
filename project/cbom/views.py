@@ -7,7 +7,7 @@
 
 from flask import render_template, Blueprint
 from flask_login import login_required
-from flask import flash
+from flask import flash, redirect, url_for, session
 from .forms import CbomSearchForm
 from project.models import Cbom
 
@@ -38,9 +38,12 @@ def cbom():
 def search_cbom():
     form = CbomSearchForm()
     if form.validate_on_submit():
-        result = Cbom.query.filter(
+        matching_cboms = Cbom.query.filter(
             Cbom.name.like('%' + form.filename.data + '%')
         ).all()
-        print(len(result))
+        # if there are matching cboms, show user list of them to select from
+        if len(matching_cboms) > 0:
+            return render_template('cbom/list_view.html', cboms=matching_cboms)
+        else:
+            flash('No matching CBOMs found')
     return render_template("cbom/search_cbom.html", form=form)
-
