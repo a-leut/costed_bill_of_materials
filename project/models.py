@@ -3,10 +3,10 @@
 
 import datetime
 
-from project import db, bcrypt
+from project import db
 
 
-class Cbom(db.model):
+class Cbom(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(265), unique=True, nullable=False)
 
@@ -22,7 +22,7 @@ class User(db.Model):
 
     def __init__(self, email, password, admin=False):
         self.email = email
-        self.password = bcrypt.generate_password_hash(password)
+        self.password = password
         self.registered_on = datetime.datetime.now()
         self.admin = admin
 
