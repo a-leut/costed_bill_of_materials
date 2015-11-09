@@ -16,7 +16,6 @@ COV = coverage.coverage(
 COV.start()
 
 from project import app, db
-from project.models import User
 
 
 migrate = Migrate(app, db)
@@ -63,14 +62,6 @@ def create_db():
 def drop_db():
     """Drops the db tables."""
     db.drop_all()
-
-
-@manager.command
-def create_admin():
-    """Creates the admin user."""
-    db.session.add(User(email='ad@min.com', password='admin', admin=True))
-    db.session.commit()
-
 
 @manager.command
 def create_data():

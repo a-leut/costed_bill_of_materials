@@ -5,11 +5,10 @@
 #### imports ####
 #################
 
-from werkzeug import secure_filename
 from flask import render_template, Blueprint
 from flask_login import login_required
 from flask import flash, redirect, url_for, session
-from .forms import CbomSearchForm
+from .forms import CbomUploadForm, CbomSearchForm
 from project.models import Cbom
 
 
@@ -39,12 +38,10 @@ def home():
     return render_template('cbom/home.html')
 
 @main_blueprint.route("/cbom/")
-@login_required
 def cbom():
     return render_template("cbom/about.html")
 
 @main_blueprint.route("/search_cbom/", methods=['GET', 'POST'])
-@login_required
 def search_cbom():
     form = CbomSearchForm()
     if form.validate_on_submit():

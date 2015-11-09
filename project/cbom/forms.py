@@ -8,5 +8,6 @@ from flask_wtf.file import FileField
 class CbomSearchForm(Form):
     filename = StringField('Partial File Name')
 
-class CBOMList (Form):
-    file = FileField ('CBOMs')
+
+class CbomUploadForm(Form):
+    file = FileField('CBOMs')

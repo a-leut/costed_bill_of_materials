@@ -6,7 +6,6 @@
 #################
 
 import os
-
 from flask import Flask, render_template
 from flask_login import LoginManager
 from flask_debugtoolbar import DebugToolbarExtension
@@ -21,7 +20,6 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 app.config.from_object(os.environ['APP_SETTINGS'])
 
-
 ####################
 #### extensions ####
 ####################
@@ -32,31 +30,12 @@ toolbar = DebugToolbarExtension(app)
 bootstrap = Bootstrap(app)
 db = SQLAlchemy(app)
 
-
 ###################
 ### blueprints ####
 ###################
 
-from project.user.views import user_blueprint
 from project.cbom.views import main_blueprint
-app.register_blueprint(user_blueprint)
 app.register_blueprint(main_blueprint)
-
-
-###################
-### flask-login ####
-###################
-
-from project.models import User
-
-login_manager.login_view = "user.login"
-login_manager.login_message_category = 'danger'
-
-
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.filter(User.id == int(user_id)).first()
-
 
 ########################
 #### error handlers ####
