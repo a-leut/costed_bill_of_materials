@@ -1,0 +1,22 @@
+{% extends "_base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+
+<div class="body-content">
+  <div class="row">
+    <h1>Matching CBOMs</h1>
+  </div>
+  <div>
+    <ul>
+      {% for cbom in cboms %}
+      <li>
+        {{ cbom.name }}
+      </li>
+      {% endfor %}
+    </ul>
+
+  </div>
+</div>
+
+{% endblock %}
