@@ -16,13 +16,17 @@ def create_cbom_record(filename):
 
 def create_cbom_row_records(file, cbom):
     df = pd.read_excel(file)
+    print(df.columns.values)
     for row in df.iterrows():
         cbom_row = CbomRow()
         cbom_row.cbom_id = cbom.id
+        print(row[1])
         cbom_row.cpn = row[1]['Customer Part Number']
         cbom_row.description = row[1]['Description']
         cbom_row.quantity = row[1]['Quantity']
         cbom_row.man_name = row[1]['Manufacturer']
         cbom_row.mpn = row[1]['Manufacturer Part']
+        cbom_row.unit_price = row[1]['Unit Price']
+        cbom_row.total_price = row[1] ['Total Price']
         db.session.add(cbom_row)
     db.session.commit()

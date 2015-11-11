@@ -16,5 +16,6 @@ class CbomRow(db.Model):
     man_name = db.Column(db.String(100))
     description = db.Column(db.String(255))
     unit_price = db.Column(db.Numeric)
+    total_price = db.Column(db.Numeric)
     quantity = db.Column(db.Integer)
     new_cool_columns = db.Column(db.String(10))
