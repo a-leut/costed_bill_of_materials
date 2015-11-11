@@ -20,6 +20,7 @@ def create_cbom_row_records(file, cbom):
     for row in df.iterrows():
         cbom_row = CbomRow()
         cbom_row.cbom_id = cbom.id
+        cbom_row.upload_date = cbom.upload_date
         print(row[1])
         cbom_row.cpn = row[1]['Customer Part Number']
         cbom_row.description = row[1]['Description']

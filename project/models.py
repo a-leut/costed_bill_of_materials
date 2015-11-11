@@ -20,6 +20,7 @@ class CbomRow(db.Model):
     mpn = db.Column(db.String(50))
     man_name = db.Column(db.String(100))
     description = db.Column(db.String(255))
+    upload_date = db.Column(db.DateTime)
     unit_price = db.Column(db.Numeric)
     total_price = db.Column(db.Numeric)
     quantity = db.Column(db.Integer)
