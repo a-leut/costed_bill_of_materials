@@ -5,8 +5,8 @@ from project import db
 
 class Cbom(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    name = db.Column(db.String(265), unique=True, nullable=False)
-    rows = db.relationship('CbomRow',backref='cbom',lazy='dynamic')
+    name = db.Column(db.String(265), nullable=False)
+    rows = db.relationship('CbomRow', backref='cbom', lazy='dynamic')
 
 class CbomRow(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
