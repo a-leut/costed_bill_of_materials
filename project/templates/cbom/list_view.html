@@ -11,7 +11,7 @@
     <ul>
       {% for cbom in cboms %}
       <li>
-        {{ cbom.name }}
+        <a href="{{ '/view_cbom_' + str(cbom.id)}}">{{ cbom.name }}</a>
       </li>
       {% endfor %}
     </ul>
