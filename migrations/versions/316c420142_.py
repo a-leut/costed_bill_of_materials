@@ -20,7 +20,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=265), nullable=False),
     sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('name')
+    #sa.UniqueConstraint('name')
     )
     ### end Alembic commands ###
 
