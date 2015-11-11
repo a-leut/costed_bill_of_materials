@@ -77,5 +77,6 @@ def search_cbom():
 
 @main_blueprint.route("/view_cbom_<id>/")
 def view_cbom(id):
-    CBOM = Cbom.query.filter(id)
-    return render_template("cbom/view_cbom/", CBOM = CBOM)
+    CBOM = Cbom.query.filter(Cbom.id == cbom.id).first()
+    cbom_rows = CbomRow.query.filter(CbomRow.cbom_id == cbom_id).all()
+    return render_template("cbom/view_cbom/", CBOM = CBOM, rows = cbom_rows)
