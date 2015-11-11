@@ -10,6 +10,9 @@ from flask_login import login_required
 from flask import flash, redirect, url_for, session, request
 from .forms import CbomUploadForm, CbomSearchForm
 from project.models import Cbom
+from sqlalchemy.exc import IntegrityError
+from io import BytesIO
+from project.cbom.import_cbom import import_cbom
 
 
 
@@ -27,9 +30,14 @@ main_blueprint = Blueprint('cbom', __name__,)
 def upload():
     form = CbomUploadForm()
     if form.validate_on_submit():
+        # try:
         file = request.files[form.file.data.name].read()
-        flash(type(file))
-    return render_template('cbom/upload.html', form=form)i
+        filename = request.files[form.file.data.name].filename
+        import_cbom(BytesIO(file), filename)
+        flash('Uploaded file ', filename)
+        # except:
+        #     flash('Error uploading file')
+    return render_template('cbom/upload.html', form=form)
 
 @main_blueprint.route('/')
 def home():
