@@ -27,4 +27,4 @@ def create_cbom_row_records(file, cbom):
         db.session.add(cbom_row)
     db.session.commit()
 
-import_cbom('bom.xls')
+import_cbom('bom.xlsx')

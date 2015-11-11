@@ -7,7 +7,7 @@
 
 from flask import render_template, Blueprint
 from flask_login import login_required
-from flask import flash, redirect, url_for, session
+from flask import flash, redirect, url_for, session, request
 from .forms import CbomUploadForm, CbomSearchForm
 from project.models import Cbom
 
@@ -25,13 +25,11 @@ main_blueprint = Blueprint('cbom', __name__,)
 ################
 @main_blueprint.route('/upload/', methods=('GET', 'POST'))
 def upload():
-    # form =
-    # if form.validate_on_submit():
-    #     filename =
-    #     form.photo.data.save('uploads/' + filename)
-    # else:
-    #     filename = None
-    return render_template('cbom/upload.html', form=None, filename=None)
+    form = CbomUploadForm()
+    if form.validate_on_submit():
+        file = request.files[form.file.data.name].read()
+        flash(type(file))
+    return render_template('cbom/upload.html', form=form)i
 
 @main_blueprint.route('/')
 def home():

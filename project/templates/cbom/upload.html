@@ -8,7 +8,21 @@
     </div>
 </div>
 
-    <form class="form" role="form" method="post" action="">
 
-    </form>
+  <form class="form" role="form" method="post" action="/upload/" enctype="multipart/form-data">
+
+    {{ form.csrf_token }}
+    {{ form.hidden_tag() }}
+    {{ wtf.form_errors(form, hiddens="only") }}
+
+
+    <div class="col-lg-4 col-sm-4">
+
+      {{ wtf.form_field(form.file) }}
+
+      <button class="btn btn-success" type="submit">Submit</button>
+
+    </div>
+
+  </form>
 {% endblock %}
