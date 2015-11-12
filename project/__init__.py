@@ -12,6 +12,8 @@ from flask_debugtoolbar import DebugToolbarExtension
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 
+# fix for pyinstaller
+import flask_bootstrap as _
 
 ################
 #### config ####
