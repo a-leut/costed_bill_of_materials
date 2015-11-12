@@ -10,10 +10,10 @@ from flask_login import login_required
 from flask import flash, redirect, url_for, session, request
 from .forms import CbomUploadForm, CbomSearchForm
 from project.models import Cbom, CbomRow
-from sqlalchemy.exc import IntegrityError
+import flask_excel as excel
 from io import BytesIO
 from project.cbom.import_cbom import import_cbom
-#from project.cbom.Estimate import Estimate
+from project.cbom.estimate import estimate_bom
 
 
 
@@ -40,18 +40,16 @@ def upload():
         #     flash('Error uploading file')
     return render_template('cbom/upload.html', form=form)
 
-@main_blueprint.route('/Estimate/', methods=('GET', 'POST'))
+@main_blueprint.route('/estimate/', methods=('GET', 'POST'))
 def estimate():
     form = CbomUploadForm()
     if form.validate_on_submit():
-         try:
-            BOM = request.files[form.file.data.name].read()
-            filename = request.files[form.file.data.name].filename
-            #Estimate(BOM)
-            flash('Uploaded file ', filename)
-         except:
-             flash('Error uploading file')
-    return render_template('cbom/upload.html', form=form)
+        bom = request.files[form.file.data.name].read()
+        filename = request.files[form.file.data.name].filename
+        output = estimate_bom(BytesIO(bom))
+        return excel.make_response_from_dict(output.to_dict(), 'csv')
+
+    return render_template('cbom/estimate.html', form=form)
 
 @main_blueprint.route('/')
 def home():
