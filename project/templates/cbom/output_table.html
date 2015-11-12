@@ -1,0 +1,76 @@
+{% extends "_base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+
+<div class="body-content">
+  <div class="row">
+    <h1>Output CBOMs in Table</h1>
+  </div>
+    <div>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+            th, td {
+                padding: 5px;
+                text-align: left;
+            }
+        </style>
+    </div>
+  <div>
+      <table>
+          <tr>
+              <td>
+                  {{ CPN }}
+              </td>
+              <td>
+                  {{ MPN }}
+              </td>
+              <td>
+                  {{ Manufacture Name }}
+              </td>
+              <td>
+                  {{ Description }}
+              </td>
+              <td>
+                  {{ Unit Price }}
+              </td>
+              <td>
+                  {{ Total Price }}
+              </td>
+              <td>
+                  {{ Quantity }}
+              </td>
+          </tr>
+          {% for CbomRow in rows %}
+          <tr>
+              <td>
+                  {{ cbom.cpn }}
+              </td>
+              <td>
+                  {{ cbom.mpn }}
+              </td>
+              <td>
+                  {{ cbom.man_name }}
+              </td>
+              <td>
+                  {{ cbom.description }}
+              </td>
+              <td>
+                  {{ cbom.unit_price }}
+              </td>
+              <td>
+                  {{ cbom.total_price }}
+              </td>
+              <td>
+                  {{ cbom.quantity }}
+              </td>
+          </tr>
+          {% endfor %}
+      </table>
+  </div>
+</div>
+
+{% endblock %}
