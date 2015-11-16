@@ -44,14 +44,18 @@ def estimate():
         # estimate the cost of the cbom
         df = estimate_bom(BytesIO(bom))
         # create excel file in memory and return to user
-        io = StringIO()
-        writer = pd.ExcelWriter('not_used.xlsx')
-        writer.book.filename = io
+        io = BytesIO()
+
+        xlwt_writer = pd.io.excel.get_writer('xlwt')
+        writer = xlwt_writer('whatever.xls')
+        writer.path = io
         df.to_excel(writer)
-        writer.close()
+        writer.save()
+        io.seek(0)
         return send_file(io,
                          as_attachment=True,
-                         attachment_filename="estimated_" + filename)
+                         attachment_filename="hey.xls",
+                         mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
 
     return render_template('cbom/estimate.html', form=form)
 
