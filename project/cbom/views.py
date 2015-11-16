@@ -11,7 +11,7 @@ from .forms import CbomUploadForm, CbomSearchForm
 from project.models import Cbom, CbomRow
 from io import BytesIO, StringIO
 from project.cbom.import_cbom import import_cbom
-from project.cbom.estimate import estimate_bom
+from project.cbom.Estimate import estimate_bom
 import pandas as pd
 
 

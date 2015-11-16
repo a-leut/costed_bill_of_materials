@@ -11,6 +11,7 @@ from flask_login import LoginManager
 from flask_debugtoolbar import DebugToolbarExtension
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
+from project.config import DevelopmentConfig
 
 # fix for pyinstaller
 import flask_bootstrap as _
@@ -20,7 +21,7 @@ import flask_bootstrap as _
 ################
 
 app = Flask(__name__)
-app.config.from_object(os.environ['APP_SETTINGS'])
+app.config.from_object(DevelopmentConfig)
 
 ####################
 #### extensions ####
