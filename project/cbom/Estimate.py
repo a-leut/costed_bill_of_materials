@@ -4,7 +4,7 @@ from project.models import CbomRow
 
 def estimate_bom(bom):
     df = pd.read_excel(bom)
-    df['Unit Price'] = np.nan
+    print(df)
     # for row in df.iterrows():
     #     if(row[1]["Manufacturer Part"] != None):
     #             df.loc[1]['Unit Price'] = CbomRow.query.filter(row[1]["Manufacturer Part"]).order_by(CbomRow.upload_date).first().unit_price

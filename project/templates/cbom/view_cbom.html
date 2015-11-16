@@ -62,7 +62,11 @@
                   {{ cbom.unit_price }}
               </td>
               <td>
-                  {{ cbom.total_price }}
+                  {% if cbom.unit_price and cbom.quantity %}
+                    {{ cbom.unit_price * cbom.quantity }}
+                  {% else %}
+                    N/A
+                  {% endif %}
               </td>
               <td>
                   {{ cbom.quantity }}
