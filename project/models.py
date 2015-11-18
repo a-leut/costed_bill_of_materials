@@ -4,14 +4,12 @@ from project import db
 from sqlalchemy import UniqueConstraint
 import datetime
 
-
 class Cbom(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(265), nullable=False)
     upload_date = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     rows = db.relationship('CbomRow', backref='cbom', lazy='dynamic')
     UniqueConstraint('upload_date', 'name', name='uix_1')
-
 
 class CbomRow(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
