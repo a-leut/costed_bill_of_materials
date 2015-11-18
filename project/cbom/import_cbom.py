@@ -30,13 +30,3 @@ def create_cbom_row_records(file, cbom):
         cbom_row.unit_price = row[1]['Unit Price']
         db.session.add(cbom_row)
     db.session.commit()
-
-
-def estimate(bom):
-    df = pd.read_excel(bom)
-    for row in df.iterrows():
-        if(row[1]["Manufacturer Part"] != None):
-                row['Unit Price'] = CbomRow.query.filter(row[1]["Manufacturer Part"]).order_by(CbomRow.upload_date).unit_price
-        elif(row[1]["Customer Part Number"] != None):
-                row['Unit Price'] = CbomRow.query.filter(row[1]["Customer Part Number"]).order_by(CbomRow.upload_date).unit_price
-    return df
