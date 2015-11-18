@@ -44,7 +44,7 @@
                   Quantity
               </td>
           </tr>
-          {% for matching_cboms in rows %}
+          {% for matching_cboms in cboms %}
           <tr>
               <td>
                   {{ matching_cboms.cpn }}
@@ -69,7 +69,7 @@
                   {% endif %}
               </td>
               <td>
-                  {{ cbomatching_cboms.quantity }}
+                  {{ matching_cboms.quantity }}
               </td>
           </tr>
           {% endfor %}

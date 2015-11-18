@@ -18,7 +18,6 @@ import pandas as pd
 ################
 #### config ####
 ################
-
 main_blueprint = Blueprint('cbom', __name__,)
 
 
