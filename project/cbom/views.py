@@ -7,7 +7,7 @@
 
 from flask import render_template, Blueprint, send_file
 from flask import flash, request
-from .forms import CbomUploadForm, CbomSearchForm
+from .forms import CbomUploadForm, CbomSearchForm, PartSearchForm
 from project.models import Cbom, CbomRow
 from io import BytesIO, StringIO
 from project.cbom.import_cbom import import_cbom
@@ -73,6 +73,18 @@ def search_cbom():
         else:
             flash('No matching CBOMs found')
     return render_template("cbom/search_cbom.html", form=form)
+
+@main_blueprint.route("/search_part/", methods=['GET', 'POST'])
+def search_part():
+    form = PartSearchForm()
+    if form.validate_on_submit():
+        matching_cboms = CbomRow.query.filter(CbomRow.mpn == form.filename.data).all()
+        # if there are matching cboms, show user list of them to select from
+        if len(matching_cboms) > 0:
+            return render_template('cbom/part_list.html', cboms=matching_cboms, str=str)
+        else:
+            flash('No matching Parts found')
+    return render_template("cbom/search_part.html", form=form)
 
 @main_blueprint.route("/view_cbom_<id>/")
 def view_cbom(id):

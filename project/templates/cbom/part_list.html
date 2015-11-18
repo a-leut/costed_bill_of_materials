@@ -1,0 +1,80 @@
+{% extends "_base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+
+<div class="body-content">
+  <div class="row">
+    <h2>Parts That Match</h2>
+  </div>
+    <div>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+            th, td {
+                padding: 5px;
+                text-align: left;
+            }
+        </style>
+    </div>
+  <div>
+      <table>
+          <tr>
+              <td>
+                  CPN
+              </td>
+              <td>
+                  MPN
+              </td>
+              <td>
+                  Manufacture Name
+              </td>
+              <td>
+                  Description
+              </td>
+              <td>
+                  Unit Price
+              </td>
+              <td>
+                  Total Price
+              </td>
+              <td>
+                  Quantity
+              </td>
+          </tr>
+          {% for matching_cboms in rows %}
+          <tr>
+              <td>
+                  {{ matching_cboms.cpn }}
+              </td>
+              <td>
+                  {{ matching_cboms.mpn }}
+              </td>
+              <td>
+                  {{ matching_cboms.man_name }}
+              </td>
+              <td>
+                  {{ matching_cboms.description }}
+              </td>
+              <td>
+                  {{ matching_cboms.unit_price }}
+              </td>
+              <td>
+                  {% if matching_cboms.unit_price and matching_cboms.quantity %}
+                    {{ matching_cboms.unit_price * matching_cboms.quantity }}
+                  {% else %}
+                    N/A
+                  {% endif %}
+              </td>
+              <td>
+                  {{ cbomatching_cboms.quantity }}
+              </td>
+          </tr>
+          {% endfor %}
+      </table>
+  </div>
+</div>
+
+{% endblock %}
