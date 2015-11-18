@@ -43,6 +43,9 @@
               <td>
                   Quantity
               </td>
+              <td>
+                  Mass Order Quantity
+              </td>
           </tr>
           {% for cbom in rows %}
           <tr>
@@ -70,6 +73,9 @@
               </td>
               <td>
                   {{ cbom.quantity }}
+              </td>
+              <td>
+                  {{ cbom.MOQ }}
               </td>
           </tr>
           {% endfor %}

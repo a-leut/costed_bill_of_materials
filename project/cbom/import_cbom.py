@@ -25,6 +25,7 @@ def create_cbom_row_records(file, cbom):
         cbom_row.cpn = row[1]['Customer Part Number']
         cbom_row.description = row[1]['Description']
         cbom_row.quantity = row[1]['QTY']
+        cbom_row.MOQ = row[1]['MOQ']
         cbom_row.man_name = row[1]['Manufacturer']
         cbom_row.mpn = row[1]['MPN']
         cbom_row.unit_price = row[1]['Unit Price']

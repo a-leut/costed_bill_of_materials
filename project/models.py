@@ -22,4 +22,5 @@ class CbomRow(db.Model):
     unit_price = db.Column(db.Numeric)
     total_price = db.Column(db.Numeric)
     quantity = db.Column(db.Integer)
+    MOQ = db.Column(db.Integer)
     new_cool_columns = db.Column(db.String(10))
