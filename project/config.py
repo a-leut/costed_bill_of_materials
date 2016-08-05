@@ -6,7 +6,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 class BaseConfig(object):
     """Base configuration."""
-    SECRET_KEY = 'w3delveopppek3wls0ftw4R@@1154%zzzb64'
+    SECRET_KEY = 'hey'
     DEBUG = False
     BCRYPT_LOG_ROUNDS = 13
     WTF_CSRF_ENABLED = True
